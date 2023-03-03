@@ -9,7 +9,6 @@ pub fn run() {
         let cr = CompletionRequest {
             prompt: sm.text + "\n\n\"\"\"\n\nWhat the above Rust source code is doing?\n1. ",
             max_tokens: 7000,
-            model: "code-davinci-002".to_string(),
             ..Default::default()
         };
 
