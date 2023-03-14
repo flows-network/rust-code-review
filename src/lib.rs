@@ -25,11 +25,11 @@ pub fn run() {
     listen_to_channel(&workspace, &channel, |sm| {
         write_error_log!("Received: ".to_string() + &sm.text);
         match sm.text.to_lowercase().as_str() {
-            "/help" => {
+            "help" => {
                 send_message_to_channel(&workspace, &channel, "To start, just send a code snippet as a message. The bot will review it for you, and then you can ask follow-up questions. To stop a review session and start a new one, type \"restart\". Each session expires after 10 minutes of inactivity. Please send in a code snippet in Rust in your next message.".to_string());
             }
 
-            "/restart" => {
+            "restart" => {
                 let co = ChatOptions {
                     restart: true,
                     restarted_sentence: Some("You will act as a reviewer for Rust code.")
