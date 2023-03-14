@@ -23,7 +23,7 @@ pub fn run() {
 
 
     listen_to_channel(&workspace, &channel, |sm| {
-        write_error_log!("Received: ".to_string() + &sm.text);
+        write_error_log!("Received: ".to_string() + sm.text.to_lowercase().as_str());
         match sm.text.to_lowercase().as_str() {
             "help" => {
                 write_error_log!("HELP".to_string());
