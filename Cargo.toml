@@ -1,5 +1,5 @@
 [package]
-name = "improve-tweet"
+name = "rust-code-review"
 version = "0.1.0"
 edition = "2021"
 

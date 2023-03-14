@@ -26,8 +26,9 @@ pub fn run() {
         write_error_log!("Received: ".to_string() + &sm.text);
         match sm.text.to_lowercase().as_str() {
             "help" => {
+                write_error_log!("HELP".to_string());
                 send_message_to_channel(&workspace, &channel, "To start, just send a code snippet as a message. The bot will review it for you, and then you can ask follow-up questions. To stop a review session and start a new one, type \"restart\". Each session expires after 10 minutes of inactivity. Please send in a code snippet in Rust in your next message.".to_string());
-            }
+            },
 
             "restart" => {
                 let co = ChatOptions {
@@ -38,7 +39,7 @@ pub fn run() {
                     write_error_log!(r.choice);
                     send_message_to_channel(&workspace, &channel, "Ok, let's start a new code review session. Please send in a code snippet in Rust in your next message.".to_string());
                 }
-            }
+            },
 
             _ => {
                 let prompt = "I will send you a snippet of Rust source code. Please review it, describe what it does, and report whether there are errors or other issues in the code. Here is the Rust code snippet:\n\n".to_owned() + "'''\n" + &sm.text + "\n'''";
@@ -49,7 +50,7 @@ pub fn run() {
                 if let Some(r) = chat_completion(&openai_key_name, &format!("rust-code-review-{}", &channel), &sm.text, &co) {
                     send_message_to_channel(&workspace, &channel, r.choice);
                 }
-            }
+            },
 
         };
 
